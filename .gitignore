@@ -1,0 +1,10 @@
+# Ignore the virtual environment directory
+venv
+.venv
+
+# Ignore local environment variables file
+node_modules
+.env.local
+.env
+
+requirements.txt
