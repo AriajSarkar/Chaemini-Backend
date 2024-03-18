@@ -13,3 +13,4 @@ google-generativeai = "*"
 [dev-packages]
 
 [requires]
+PYTHON_VERSION = "*"
