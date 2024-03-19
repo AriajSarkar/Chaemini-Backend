@@ -12,7 +12,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv('API_KEY'))
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173"]}})
 
 config = {
   'temperature': 0,
