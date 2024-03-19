@@ -44,7 +44,7 @@ safety_settings = [
 # Initialize Gemini models without passing api_key as an argument
 gemini_pro = genai.GenerativeModel('gemini-pro', generation_config=config, safety_settings=safety_settings)
 
-@app.route('/api/g/generate-text', methods=['POST'])
+@app.route('/api/v1/g/generate-text', methods=['POST'])
 def generate_text():
     data = request.get_json()
     prompt = data.get('prompt')
@@ -62,7 +62,7 @@ def generate_text():
 # Initialize Gemini models without passing api_key as an argument
 gemini_pro_vision = genai.GenerativeModel('gemini-pro-vision', generation_config=config, safety_settings=safety_settings)
 
-@app.route('/api/g/generate-vision', methods=['POST'])
+@app.route('/api/v1/g/generate-vision', methods=['POST'])
 def generate_vision():
     if 'user_image' not in request.files:
         return jsonify({"error": "No file part"})
@@ -98,7 +98,10 @@ def display_message():
 
 if __name__ == '__main__':
     # Debug/Development
+    host = 'localhost'
+    port = 5000
+    print(f"App running on - http://{host}:{port}/")
     # app.run(debug=True, host="0.0.0.0", port="5000")
     # Production
-    http_server = WSGIServer(('', 5000), app)
+    http_server = WSGIServer(('', port), app)
     http_server.serve_forever()

@@ -1,0 +1,14 @@
+{
+    "builds": [
+        {
+            "src": "/gapp.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/gapp.py"
+        }
+    ]
+}

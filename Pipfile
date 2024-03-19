@@ -22,4 +22,4 @@ waitress = "*"
 gevent = "*"
 
 [requires]
-PYTHON_VERSION = "*"
+PYTHON_VERSION = "3.11.5"
