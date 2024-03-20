@@ -17,6 +17,7 @@ CORS(app, resources={
         "origins": [
             "http://localhost:5173",
             "https://main--chaemini.netlify.app",
+            "https://chaemini.netlify.app"
         ],
         "methods": ["POST"],
         "allow_credentials": True
@@ -24,30 +25,30 @@ CORS(app, resources={
 })
 
 config = {
-  'temperature': 0,
-  'top_k': 20,
-  'top_p': 0.9,
-  'max_output_tokens': 4096,
-  'stop_sequences': ['<|END]|>']
+    'temperature': 0,
+    'top_k': 20,
+    'top_p': 0.9,
+    'max_output_tokens': 4096,
+    'stop_sequences': ['<|END]|>']
 }
 
 safety_settings = [
-  {
-    "category": "HARM_CATEGORY_HARASSMENT",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-  },
-  {
-    "category": "HARM_CATEGORY_HATE_SPEECH",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-  },
-  {
-    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-  },
-  {
-    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
-  }
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },  
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    }
 ]
 
 # Initialize Gemini models without passing api_key as an argument
