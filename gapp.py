@@ -16,10 +16,10 @@ CORS(app, resources={
     r"/api/*": {
         "origins": [
             "http://localhost:5173",
-            "https://main--chaemini.netlify.app/",
-            "https://chaemini-backend-dexyscrafts-projects.vercel.app/",
-            "https://chaemini-backend-git-main-dexyscrafts-projects.vercel.app/"
-        ]
+            "https://main--chaemini.netlify.app",
+        ],
+        "methods": ["POST"],
+        "allow_credentials": True
     }
 })
 
