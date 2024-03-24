@@ -4,16 +4,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 import google.generativeai as genai
-from gunicorn.app.base import BaseApplication
+from gevent.pywsgi import WSGIServer
 
 # Load environment variables from a .env file
 load_dotenv()
 
 # Configure the API key for google.generativeai
 genai.configure(api_key=os.getenv('API_KEY'))
-
-# Get allowed origins from environment variable
-allowed_origins = os.getenv('ALLOWED_ORIGINS').split(',')
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -24,7 +21,10 @@ app = Flask(__name__)
 # Enable CORS (Cross-Origin Resource Sharing) for specific routes
 CORS(app, resources={
     r"/api/*": {
-        "origins": allowed_origins
+        "origins": [
+            "https://main--chaemini.netlify.app",
+            "https://chaemini.netlify.app"
+        ]
     }
 })
 
@@ -130,29 +130,10 @@ def internal_server_error(error):
 def display_message():
     return "This Method Isn't allowed"
 
-class StandaloneApplication(BaseApplication):
-    def __init__(self, app, options=None):
-        self.options = options or {}
-        self.application = app
-        super().__init__()
-
-    def load_config(self):
-        config = {key: value for key, value in self.options.items()
-                    if key in self.cfg.settings and value is not None}
-        for key, value in config.items():
-            self.cfg.set(key.lower(), value)
-
-    def load(self):
-        return self.application
-
 if __name__ == '__main__':
-    # Run the Flask application using Gunicorn for production
+    # Run the Flask application using gevent WSGIServer for production
     host = 'localhost'
     port = 5000
     print(f"App running on - http://{host}:{port}")
-    options = {
-        'bind': f'{host}:{port}',
-        'workers': 4,
-        'worker_class': 'gevent'
-    }
-    StandaloneApplication(app, options).run()
+    http_server = WSGIServer(('', port), app)
+    http_server.serve_forever()
