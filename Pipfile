@@ -11,6 +11,7 @@ python-dotenv = "*"
 google-generativeai = "*"
 waitress = "*"
 gevent = "*"
+gunicorn ="*"
 
 [dev-packages]
 flask = "*"
