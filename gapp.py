@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 # Enable CORS (Cross-Origin Resource Sharing) for specific routes
 CORS(app, resources={
-    r"/api/v1/*": {
+    r"/api/*": {
         "origins": [
             "https://chaemini.netlify.app",
             "https://main--chaemini.netlify.app",
