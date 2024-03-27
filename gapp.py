@@ -22,6 +22,7 @@ app = Flask(__name__)
 CORS(app, resources={
     r"/api/*": {
         "origins": [
+            "http://localhost:5173",
             "https://chaemini.netlify.app",
             "https://main--chaemini.netlify.app",
         ]
