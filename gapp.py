@@ -24,7 +24,6 @@ CORS(app, resources={
         "origins": [
             "https://chaemini.netlify.app",
             "https://main--chaemini.netlify.app",
-            "https://chaemini-frontend.onrender.com",
         ]
     }
 })
